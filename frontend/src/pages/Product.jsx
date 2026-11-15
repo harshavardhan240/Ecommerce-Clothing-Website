@@ -4,11 +4,13 @@ import { useParams } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/frontend_assets/assets';
 import RelatedProducts from '../components/RelatedProducts';
+import {ToastContainer,toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Product = () => {
 
     const { productId } = useParams();
-    const { products, currency } = useContext(ShopContext);
+    const { products, currency , addToCart} = useContext(ShopContext);
 
     const [productData, setProductData] = useState(false);
     const [image, setImage] = useState('');
@@ -130,7 +132,7 @@ const Product = () => {
 
 
                     {/* Add to Cart */}
-                    <button className='bg-black text-white px-10 py-3 text-sm hover:bg-gray-800 active:bg-gray-700 transition'>
+                    <button onClick = {() => {addToCart(productData._id,size)}}className='bg-black text-white px-10 py-3 text-sm hover:bg-gray-800 active:bg-gray-700 transition'>
                         ADD TO CART
                     </button>
 
